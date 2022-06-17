@@ -19,7 +19,7 @@ const Register = ({ icon }) => {
         e.preventDefault();
         try {
             const responseData = await fetch(
-                "http://localhost:1337/api/auth/local/register",
+                `${process.env.NEXT_URL}api/auth/local/register`,
                 {
                     headers: {
                         'Content-Type': 'application/json',

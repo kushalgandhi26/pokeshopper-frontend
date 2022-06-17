@@ -24,7 +24,7 @@ const Login = ({ icon }) => {
         e.preventDefault();
         try {
             const responseData = await fetch(
-                "http://localhost:1337/api/auth/local",
+                `${process.env.NEXT_URL}api/auth/local`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
