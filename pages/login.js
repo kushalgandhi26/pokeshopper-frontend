@@ -24,7 +24,7 @@ const Login = ({ icon }) => {
         e.preventDefault();
         try {
             const responseData = await fetch(
-                `${process.env.NEXT_URL}api/auth/local`,
+                `${process.env.NEXT_URL}/api/auth/local`,
                 {
                     headers: {
                         'Content-Type': 'application/json',

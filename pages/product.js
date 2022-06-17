@@ -46,7 +46,7 @@ function Product(props) {
 
 export async function getServerSideProps(context) {
   const token = { Authorization: process.env.NEXT_TOKEN}
-  let a = await fetch(`${process.env.NEXT_URL}api/products?populate=*`, { headers: token });
+  let a = await fetch(`${process.env.NEXT_URL}/api/products?populate=*`, { headers: token });
   let products = await a.json()
   return {
     props: { products },

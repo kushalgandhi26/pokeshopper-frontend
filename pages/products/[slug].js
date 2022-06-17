@@ -129,7 +129,7 @@ function Slug({ product, addToCart, loggedIn, icon }) {
 
 export async function getServerSideProps(context) {
   const token = { Authorization: process.env.NEXT_TOKEN }
-  let a = await fetch(`${process.env.NEXT_URL}api/products?filters[slug]=${context.query.slug}&populate=*`, { headers: token });
+  let a = await fetch(`${process.env.NEXT_URL}/api/products?filters[slug]=${context.query.slug}&populate=*`, { headers: token });
   let product = await a.json()
   return {
     props: { product: product.data[0] },
