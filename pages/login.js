@@ -24,7 +24,7 @@ const Login = ({ icon }) => {
         e.preventDefault();
         try {
             const responseData = await fetch(
-                `${process.env.NEXT_URL}/api/auth/local`,
+                `${process.env.NEXT_PUBLIC_URL}/api/auth/local`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const Login = ({ icon }) => {
                             <Link href="/register"><a className="font-medium text-red-600 hover:text-red-500"> Register </a></Link>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form className="mt-8 space-y-6" method="POST">
                         <input type="hidden" name="remember" value="true" />
                         <div className="rounded-md shadow-sm -space-y-px">
                             <div>

@@ -19,7 +19,7 @@ const Register = ({ icon }) => {
         e.preventDefault();
         try {
             const responseData = await fetch(
-                `${process.env.NEXT_URL}/api/auth/local/register`,
+                `${process.env.NEXT_PUBLIC_URL}/api/auth/local/register`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -58,7 +58,6 @@ const Register = ({ icon }) => {
                     progress: undefined,
                 });
             }
-            console.error(res);
         } catch (error) {
             console.error(error);
         }
@@ -93,7 +92,7 @@ const Register = ({ icon }) => {
                                 <Link href="/login"><a className="font-medium text-red-600 hover:text-red-500"> Login </a></Link>
                             </p>
                         </div>
-                        <div className="mt-8 space-y-6">
+                        <form className="mt-8 space-y-6" method="POST">
                             <input type="hidden" name="remember" value="true" />
                             <div className="rounded-md shadow-sm -space-y-px">
                                 <div>
@@ -131,7 +130,7 @@ const Register = ({ icon }) => {
                                     Register
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
