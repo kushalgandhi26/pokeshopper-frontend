@@ -54,6 +54,8 @@ function MyApp({ Component, pageProps }) {
       if (localStorage.getItem("cart")) {
         setcartproducts(JSON.parse(localStorage.getItem("cart")))
         saveCart(JSON.parse(localStorage.getItem("cart")))
+      }else{
+        localStorage.setItem("cart",JSON.stringify({}))
       }
     } catch (error) {
       console.log(error)
