@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-function Slug({ product, addToCart, loggedIn, icon }) {
+function Slug({ product, addToCart, loggedIn, icon}) {
   const router = useRouter()
   const { slug } = router.query
 
@@ -11,7 +11,7 @@ function Slug({ product, addToCart, loggedIn, icon }) {
 
   const handleCheckout = () => {
     if (loggedIn) {
-      router.push("/checkout")
+      router.push({ pathname: '/checkout', query: { total: productData.price } })
     } else {
       router.push({ pathname: '/login', query: { path: path } })
     }

@@ -2,19 +2,43 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Checkout = ({ icon,total }) => {
+
+const Checkout = ({ icon,total,settotal }) => {
     const [form, setform] = useState({ name: "", email: "" })
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: [e.target.value] })
     }
 
+    const router = useRouter();
+
     useEffect(() => {
         if (localStorage.getItem('name') && localStorage.getItem('email')) {
             setform({ name: localStorage.getItem('name'), email: localStorage.getItem('email') })
         }
+
+        if(router.query.total !== undefined){
+            settotal(router.query.total)
+        }
     }, [])
+
+    const handleCheckout = () => {
+        if(total == 0){
+            toast.error("Payment can't be proceed", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
 
 
     // const submit = async () => {
@@ -61,6 +85,17 @@ const Checkout = ({ icon,total }) => {
                 <title>Checkout</title>
                 <link rel="icon" href={icon} />
             </Head>
+            <ToastContainer
+                position="top-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             {/* <Script type="application/javascript" crossorigin="anonymous" src={`https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_MID}.js`}> </Script> */}
             <div className='container mx-auto px-1'>
                 <section className="text-gray-600 body-font">
@@ -96,7 +131,7 @@ const Checkout = ({ icon,total }) => {
                                     </div>
                                 </div>
                                 <div className="p-2 w-full">
-                                    <button className="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Pay Now</button>
+                                    <button onClick={handleCheckout} className="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Pay Now</button>
                                 </div>
                             </div>
                         </div>

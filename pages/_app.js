@@ -87,6 +87,7 @@ function MyApp({ Component, pageProps }) {
     newCart[id] = product
     setcartproducts(newCart)
     saveCart(newCart)
+    setshowCart(true)
   }
 
   const removeFromCart = (id) => {
@@ -121,7 +122,7 @@ function MyApp({ Component, pageProps }) {
   return <>
     {showCart && <Cart showCart={showCart} setshowCart={setshowCart} cartproducts={cartproducts} total={total} removeFromCart={removeFromCart} addToCart={addToCart} decreaseQTY={decreaseQTY} increaseQTY={increaseQTY} loggedIn={loggedIn} />}
     <NextNProgress color='#e60000' startPosition={position} stopDelayMs={400} />
-    <NavBar show={show} setshow={setshow} showCart={showCart} setshowCart={setshowCart} key={reloadKey} logout={handlelogout} loggedIn={loggedIn} /> <Component icon={icon} total={total} loggedIn={loggedIn} addToCart={addToCart} clearCart={clearCart} {...pageProps} /> <Footer />
+    <NavBar show={show} setshow={setshow} showCart={showCart} setshowCart={setshowCart} key={reloadKey} logout={handlelogout} loggedIn={loggedIn} /> <Component icon={icon} total={total} settotal={settotal} loggedIn={loggedIn} addToCart={addToCart} clearCart={clearCart} {...pageProps} /> <Footer />
   </>
 }
 
